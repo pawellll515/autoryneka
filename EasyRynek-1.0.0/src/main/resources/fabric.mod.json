@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "rynekklikacz",
+  "version": "1.0.0",
+  "name": "RynekKlikacz",
+  "description": "Start/Stop nad GUI z \"Rynek\" (klikanie slotu 0), skaner przedmiotow z rynku i wyszukiwarka pod X.",
+  "authors": [
+    "xSlodziaczekk"
+  ],
+  "license": "MIT",
+  "icon": "assets/rynekklikacz/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "pl.rynekklikacz.RynekKlikaczClient"
+    ]
+  },
+  "mixins": [
+    "rynekklikacz.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
