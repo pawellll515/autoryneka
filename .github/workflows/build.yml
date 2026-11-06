@@ -21,9 +21,10 @@ jobs:
           gradle-version: 8.12
 
       - name: Build
+        working-directory: ./EasyRynek-1.0.0
         run: gradle build --no-daemon
 
       - uses: actions/upload-artifact@v4
         with:
           name: EasyRynek
-          path: build/libs/*.jar
+          path: EasyRynek-1.0.0/build/libs/*.jar
