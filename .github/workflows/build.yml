@@ -11,6 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Find project folder (settings.gradle)
+        run: |
+          f=$(find . -name settings.gradle -not -path '*/.git/*' | head -1)
+          if [ -z "$f" ]; then echo "Brak settings.gradle w repo"; exit 1; fi
+          echo "PROJ=$(dirname "$f")" >> "$GITHUB_ENV"
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -21,10 +27,10 @@ jobs:
           gradle-version: 8.12
 
       - name: Build
-        working-directory: ./EasyRynek-1.0.0
+        working-directory: ${{ env.PROJ }}
         run: gradle build --no-daemon
 
       - uses: actions/upload-artifact@v4
         with:
           name: EasyRynek
-          path: EasyRynek-1.0.0/build/libs/*.jar
+          path: ${{ env.PROJ }}/build/libs/*.jar
